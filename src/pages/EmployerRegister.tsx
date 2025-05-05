@@ -32,8 +32,8 @@ const employerFormSchema = z.object({
   password: z.string().min(8, { message: "Password must be at least 8 characters." }),
   companyDescription: z.string().min(10, { message: "Please provide a brief description of your company." }),
   inclusiveHiring: z.boolean().default(false),
-  termsAccepted: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions." }),
+  termsAccepted: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions."
   }),
 });
 
